@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include <cmath>
 #include <clocale>
+#include <iomanip>
 
 using namespace std;
 
@@ -41,13 +42,21 @@ int main()
 
 	if (fabs((valueOfFunction(x0) * calcSecondDerivative(x0)) / pow(calcDerivative(x0), 2)) < 1)//Проверка условия сходимости
 	{
+		int iteration = 1;
 		//Цикл поиска корня
 		do
 		{
 			x1 = x0 - (valueOfFunction(x0) / calcDerivative(x0));//Расчёт следующего приближения
-			cout << "х0: " << x0 << "\t" << "x1:" << x1 << endl;
+			
 			delta = x1 - x0;//Разница между следующим и предыдущим корнями
+
+			cout << "№ " << left << setw(2) << iteration << "\t"
+				<< "х0: " << left << setw(8) << x0 << "\t"
+				<< "x1:" << left << setw(8) << x1 << "\t"
+				<< "|x1 - x0|" << left << setw(8) << fabs(delta) << endl;
+					
 			x0 = x1;
+			iteration++;
 
 		} while (fabs(delta) > epsilon);
 
