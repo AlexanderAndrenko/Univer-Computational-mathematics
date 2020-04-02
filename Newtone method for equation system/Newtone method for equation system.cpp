@@ -10,44 +10,46 @@ Solving isn't completed
 
 using namespace std;
 
-double valueOfFirstFunc(double x, double y)
+typedef long long int root;
+
+root valueOfFirstFunc(root x, root y)
 {
-	double result = x + tan(x * y);
+	root result = x + tan(x * y);
 
 	return result;
 }
 
-double valueOfSecondFunc(double x, double y)
+root valueOfSecondFunc(root x, root y)
 {
-	double result = (y * y - 7.5 * 7.5) + log(x);
+	root result = (y * y - 7.5 * 7.5) + log(x);
 
 	return result;
 }
 
-double partialDerFirstFuncX(double x, double y)
+root partialDerFirstFuncX(root x, root y)
 {
-	double result = 1 + (y / pow(cos(x * y),2));
+	root result = y * (pow(tan(x * y),2) + 1) + 1;
 
 	return result;
 }
 
-double partialDerFirstFuncY(double x, double y)
+root partialDerFirstFuncY(root x, root y)
 {
-	double result = x / pow(cos(x * y), 2);
+	root result = y * (pow(tan(x * y), 2) + 1) + 1;
 
 	return result;
 }
 
-double partialDerSecondFuncX(double x, double y)
+root partialDerSecondFuncX(root x, root y)
 {
-	double result = 1 / x;
+	root result = 1 / x;
 
 	return result;
 }
 
-double partialDerSecondFuncY(double x, double y)
+root partialDerSecondFuncY(root x, root y)
 {
-	double result = 2 * y;
+	root result = 2 * y;
 
 	return result;
 }
@@ -56,10 +58,10 @@ int main()
 {
 	setlocale(LC_ALL, "Russian");
 
-	double x0[2];//Начальное приближение корня
-	double x1[2];//Последующее приближение корня
-	double epsilon;//точность вычислений
-	double delta[2];//Разность между следующим и предыдущим корнями
+	root x0[2];//Начальное приближение корня
+	root x1[2];//Последующее приближение корня
+	root epsilon;//точность вычислений
+	root delta[2];//Разность между следующим и предыдущим корнями
 	
 	cout << "Введите начальное приближение корня.";
 	cout << "x0: ";
@@ -76,14 +78,14 @@ int main()
 	do
 	{
 		x1[0] = x0[0] -
-			((valueOfFirstFunc(x0[0], x0[1]) * partialDerSecondFuncY(x0[0], x0[1] - partialDerFirstFuncY(x0[0], x0[1]) * valueOfSecondFunc(x0[0], x0[1]))
+			((valueOfFirstFunc(x0[0], x0[1]) * partialDerSecondFuncY(x0[0], x0[1]) - partialDerFirstFuncY(x0[0], x0[1]) * valueOfSecondFunc(x0[0], x0[1]))
 				/
-				(partialDerFirstFuncX(x0[0], x0[1]) * partialDerSecondFuncY(x0[0], x0[1]) - partialDerFirstFuncY(x0[0], x0[1]) * partialDerSecondFuncX(x0[0], x0[1]))));
+				(partialDerFirstFuncX(x0[0], x0[1]) * partialDerSecondFuncY(x0[0], x0[1]) - partialDerFirstFuncY(x0[0], x0[1]) * partialDerSecondFuncX(x0[0], x0[1])));
 		//Расчёт следующего приближения
 		x1[1] = x0[1] -
-			((partialDerFirstFuncX(x0[0], x0[1]) * valueOfSecondFunc(x0[0], x0[1] - valueOfFirstFunc(x0[0], x0[1]) * partialDerSecondFuncX(x0[0], x0[1]))
+			((partialDerFirstFuncX(x0[0], x0[1]) * valueOfSecondFunc(x0[0], x0[1]) - valueOfFirstFunc(x0[0], x0[1]) * partialDerSecondFuncX(x0[0], x0[1]))
 				/
-				(partialDerFirstFuncX(x0[0], x0[1]) * partialDerSecondFuncY(x0[0], x0[1]) - partialDerFirstFuncY(x0[0], x0[1]) * partialDerSecondFuncX(x0[0], x0[1]))));//Расчёт следующего приближения
+				(partialDerFirstFuncX(x0[0], x0[1]) * partialDerSecondFuncY(x0[0], x0[1]) - partialDerFirstFuncY(x0[0], x0[1]) * partialDerSecondFuncX(x0[0], x0[1])));//Расчёт следующего приближения
 
 		delta[0] = x1[0] - x0[0];//Разница между следующим и предыдущим корнями
 		delta[1] = x1[1] - x0[1];//Разница между следующим и предыдущим корнями
