@@ -40,7 +40,7 @@ int main()
 	double epsilon;//точность вычислений
 	double delta[2];//Разность между следующим и предыдущим корнями
 	
-	cout << "Введите начальное приближение корня.";
+	cout << "Введите начальное приближение корня.\n";
 	cout << "x0: ";
 	cin >> x0[0];
 	cout << "y0: ";
@@ -67,7 +67,7 @@ int main()
 				<< "y0: " << left << setw(8) << x0[1] << "\t"
 				<< "x1:" << left << setw(8) << x1[0] << "\t"
 				<< "y1: " << left << setw(8) << x1[1] << "\t"
-				<< "|x1 - x0|" << left << setw(8) << fabs(delta[0]) << "\t" << fabs(delta[1]) << endl;
+				<< "|x1 - x0|, |y1 - y0|  " << left << setw(8) << fabs(delta[0]) << ",\t" << setw(8) << fabs(delta[1]) << endl;
 
 			x0[0] = x1[0];
 			x0[1] = x1[1];
