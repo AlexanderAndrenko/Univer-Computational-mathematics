@@ -10,7 +10,7 @@ Solving isn't completed
 
 using namespace std;
 
-typedef long long int root;
+typedef long double root;
 
 root valueOfFirstFunc(root x, root y)
 {
