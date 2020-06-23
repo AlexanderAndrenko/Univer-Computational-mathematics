@@ -9,6 +9,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Picard method for the equat
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Newtone method for equation system", "Newtone method for equation system\Newtone method for equation system.vcxproj", "{6834C271-8B55-4004-8415-37EA85E29EDF}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Simpson's rule", "Simpson's rule\Simpson's rule.vcxproj", "{64077DAF-76BC-4E23-8F32-AFEAB1532608}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -41,6 +43,14 @@ Global
 		{6834C271-8B55-4004-8415-37EA85E29EDF}.Release|x64.Build.0 = Release|x64
 		{6834C271-8B55-4004-8415-37EA85E29EDF}.Release|x86.ActiveCfg = Release|Win32
 		{6834C271-8B55-4004-8415-37EA85E29EDF}.Release|x86.Build.0 = Release|Win32
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Debug|x64.ActiveCfg = Debug|x64
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Debug|x64.Build.0 = Debug|x64
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Debug|x86.ActiveCfg = Debug|Win32
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Debug|x86.Build.0 = Debug|Win32
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Release|x64.ActiveCfg = Release|x64
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Release|x64.Build.0 = Release|x64
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Release|x86.ActiveCfg = Release|Win32
+		{64077DAF-76BC-4E23-8F32-AFEAB1532608}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
