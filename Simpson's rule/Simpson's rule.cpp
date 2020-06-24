@@ -21,39 +21,51 @@ value ValueFourthDerivative(value x)
 
 /*ATTENTION*/
 /*Доработать динамический размер массива или пересмотреть структуру данных*/
-value MaxDeltaFunc(value step, value low)//Функция поиска максимальной разницы чертвертого порядка подынтегральной функции
+value MaxDeltaFunc(value step, value low, int quantity)//Функция поиска максимальной разницы чертвертого порядка подынтегральной функции
 {
-    value max;
-    value array[21][5];
+    value max;//Максимальное значение разности четвёртого порядка
 
-    for (int i = 0; i < 21; i++)
+    //Создание массива для расчета разности четвертого порядка
+    value** array = new value * [quantity];
+    for (int index = 0; index < quantity; index++)
+    {
+        array[index] = new value[5];
+    }
+    
+    //Расчёт значений функций в узлах
+    for (int i = 0; i < quantity; i++)
     {
         array[i][0] = ValueOfIntegrand(low + (step * i));//Заполнение массива значениями функций в точках
     }
 
-    for (int i = 0; i < 20; i++)
+    //Расчёт разностей первого порядка
+    for (int i = 0; i < quantity - 1; i++)
     {
         array[i][1] = array[i + 1][0] - array[i][0];//Разность первого порядка
     }
 
-    for (int i = 0; i < 19; i++)
+    //Расчёт разностей второго порядка
+    for (int i = 0; i < quantity - 2; i++)
     {
         array[i][2] = array[i + 1][1] - array[i][1];//Разность второго порядка
     }
 
-    for (int i = 0; i < 18; i++)
+    //Расчёт разностей третьего порядка
+    for (int i = 0; i < quantity - 3; i++)
     {
         array[i][3] = array[i + 1][2] - array[i][2];//Разность третьего порядка
     }
 
-    for (int i = 0; i < 17; i++)
+    //Расчёт разностей четвертого порядка
+    for (int i = 0; i < quantity - 4; i++)
     {
         array[i][4] = array[i + 1][3] - array[i][3];//Разность четвертого порядка
     }
 
-    max = array[0][4];
+    max = array[0][4];//Присваиваем первое значение разности четвертого порядка как максимальное
 
-    for (int  i = 0; i < 17; i++)
+
+    for (int  i = 0; i < 17; i++)//Поиск максимального значения разности 4 порядка
     {
         if (max < array[i][4])
         {
@@ -61,6 +73,9 @@ value MaxDeltaFunc(value step, value low)//Функция поиска макс�
         }
     }
     
+    for (int i = 0; i < quantity; i++)
+        delete []array[i];
+
     return max;
 }
 
@@ -85,7 +100,7 @@ value SimpsonsRule(value lowerIntervalValue, value upperIntervalValue, int quant
         sumOfEvenValue += ValueOfIntegrand(lowerIntervalValue + (i * step));
     }
 
-    value remain = ((upperIntervalValue - lowerIntervalValue) * MaxDeltaFunc(step, lowerIntervalValue)) / 180;
+    value remain = ((upperIntervalValue - lowerIntervalValue) * MaxDeltaFunc(step, lowerIntervalValue, quantityOfIntervals + 1)) / 180;
 
     cout << "Остаточный член: ";
     cout << fixed;
