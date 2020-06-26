@@ -9,14 +9,9 @@ using namespace std;
 
 typedef long double value;//Тип данных используемый для результатов вычислений
 
-value ValueOfIntegrand(value x)//Вычисление значения подынтегральной функции в заданной точке
+value GetValueOfIntegrand(value x)//Вычисление значения подынтегральной функции в заданной точке
 {
     return ((x / 2) * log((x * x) / 2));
-}
-
-value ValueFourthDerivative(value x)
-{
-    return 2 / (x * x * x);
 }
 
 /*ATTENTION*/
@@ -35,7 +30,7 @@ value MaxDeltaFunc(value step, value low, int quantity)//Функция поис
     //Расчёт значений функций в узлах
     for (int i = 0; i < quantity; i++)
     {
-        array[i][0] = ValueOfIntegrand(low + (step * i));//Заполнение массива значениями функций в точках
+        array[i][0] = GetValueOfIntegrand(low + (step * i));//Заполнение массива значениями функций в точках
     }
 
     //Расчёт разностей первого порядка
@@ -81,7 +76,7 @@ value MaxDeltaFunc(value step, value low, int quantity)//Функция поис
 
 value SimpsonsRule(value lowerIntervalValue, value upperIntervalValue, int quantityOfIntervals)//Параметры: Нижнее значение интервала, Верхнее значение интервала, Количество интервалов
 {
-    if (quantityOfIntervals % 2 != 0)
+    if (quantityOfIntervals % 2 != 0)//Если количество интервалов нечётное, то увеличиваем значение на единицу
     {
         quantityOfIntervals++;
     }
@@ -91,13 +86,13 @@ value SimpsonsRule(value lowerIntervalValue, value upperIntervalValue, int quant
     value sumOfOddValue = 0;// сумма значений функций в нечетных узлах
     for (int i = 1; i < quantityOfIntervals; i += 2)//Вычисление суммы значений функции в нечетных узлах
     {
-        sumOfOddValue += ValueOfIntegrand(lowerIntervalValue + (i * step));
+        sumOfOddValue += GetValueOfIntegrand(lowerIntervalValue + (i * step));
     }
 
     value sumOfEvenValue = 0;// сумма значений функций в четных узлах
     for (int i = 2; i < quantityOfIntervals; i += 2)//Вычисление суммы значений функции в четных узлах
     {
-        sumOfEvenValue += ValueOfIntegrand(lowerIntervalValue + (i * step));
+        sumOfEvenValue += GetValueOfIntegrand(lowerIntervalValue + (i * step));
     }
 
     value remain = ((upperIntervalValue - lowerIntervalValue) * MaxDeltaFunc(step, lowerIntervalValue, quantityOfIntervals + 1)) / 180;
@@ -106,7 +101,7 @@ value SimpsonsRule(value lowerIntervalValue, value upperIntervalValue, int quant
     cout << fixed;
     cout << setprecision(12) << remain << endl;
 
-    return ((step / 3) * (ValueOfIntegrand(lowerIntervalValue) + ValueOfIntegrand(upperIntervalValue) + (4 * sumOfOddValue) + (2 * sumOfEvenValue)));
+    return ((step / 3) * (GetValueOfIntegrand(lowerIntervalValue) + GetValueOfIntegrand(upperIntervalValue) + (4 * sumOfOddValue) + (2 * sumOfEvenValue)));
 
 }
 
