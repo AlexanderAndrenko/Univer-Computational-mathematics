@@ -14,9 +14,8 @@ value GetValueOfIntegrand(value x)//Вычисление значения под
     return ((x / 2) * log((x * x) / 2));
 }
 
-/*ATTENTION*/
-/*Доработать динамический размер массива или пересмотреть структуру данных*/
-value MaxDeltaFunc(value step, value low, int quantity)//Функция поиска максимальной разницы чертвертого порядка подынтегральной функции
+/*Функция поиска максимальной разницы чертвертого порядка подынтегральной функции*/
+value MaxDeltaFunc(value step, value low, int quantity)//
 {
     value max;//Максимальное значение разности четвёртого порядка
 
