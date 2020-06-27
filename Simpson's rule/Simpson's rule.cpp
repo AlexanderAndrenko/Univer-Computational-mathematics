@@ -59,7 +59,7 @@ value MaxDeltaFunc(value step, value low, int quantity)//
     max = array[0][4];//Присваиваем первое значение разности четвертого порядка как максимальное
 
 
-    for (int  i = 0; i < 17; i++)//Поиск максимального значения разности 4 порядка
+    for (int  i = 0; i < quantity - 4; i++)//Поиск максимального значения разности 4 порядка
     {
         if (max < array[i][4])
         {
@@ -97,8 +97,9 @@ value SimpsonsRule(value lowerIntervalValue, value upperIntervalValue, int quant
     value remain = ((upperIntervalValue - lowerIntervalValue) * MaxDeltaFunc(step, lowerIntervalValue, quantityOfIntervals + 1)) / 180;
 
     cout << "Остаточный член: ";
-    cout << fixed;
-    cout << setprecision(12) << remain << endl;
+    cout << setprecision(5) << remain << endl;
+    cout << "delta I: ";
+    cout << setprecision(5) << MaxDeltaFunc(step, lowerIntervalValue, quantityOfIntervals + 1) << endl;
 
     return ((step / 3) * (GetValueOfIntegrand(lowerIntervalValue) + GetValueOfIntegrand(upperIntervalValue) + (4 * sumOfOddValue) + (2 * sumOfEvenValue)));
 
