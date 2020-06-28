@@ -35,7 +35,7 @@ root partialDerFirstFuncX(root x, root y)
 
 root partialDerFirstFuncY(root x, root y)
 {
-	root result = x * (pow(tan(x * y), 2) + 1) + 1;
+	root result = x * (pow(tan(x * y), 2) + 1);
 
 	return result;
 }

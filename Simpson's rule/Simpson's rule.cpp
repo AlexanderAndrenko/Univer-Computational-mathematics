@@ -123,7 +123,7 @@ int main()
     double result = SimpsonsRule(low, high, intervals);
 
     cout << "Результат вычисления: ";
-    cout << setprecision(12) << result << endl;
+    cout << setprecision(13) << result << endl;
 
     system("pause");
 
