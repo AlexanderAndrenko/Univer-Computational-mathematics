@@ -1,9 +1,4 @@
-﻿/*
-Решение не доработано
-
-Solving isn't completed
-*/
-#include <iostream>
+﻿#include <iostream>
 #include <cmath>
 #include <clocale>
 #include <iomanip>
@@ -12,6 +7,7 @@ using namespace std;
 
 typedef long double root;
 
+/*Вычисление функции в точке f(x,y)*/
 root valueOfFirstFunc(root x, root y)
 {
 	root result = x + tan(x * y);
@@ -19,6 +15,7 @@ root valueOfFirstFunc(root x, root y)
 	return result;
 }
 
+/*Вычисление функции в точке g(x,y)*/
 root valueOfSecondFunc(root x, root y)
 {
 	root result = (y * y - 7.5 * 7.5) + log(x);
@@ -26,6 +23,7 @@ root valueOfSecondFunc(root x, root y)
 	return result;
 }
 
+/*Вычисление функции в точке f'x*/
 root partialDerFirstFuncX(root x, root y)
 {
 	root result = y * (pow(tan(x * y),2) + 1) + 1;
@@ -33,6 +31,7 @@ root partialDerFirstFuncX(root x, root y)
 	return result;
 }
 
+/*Вычисление функции в точке f'y*/
 root partialDerFirstFuncY(root x, root y)
 {
 	root result = x * (pow(tan(x * y), 2) + 1);
@@ -40,6 +39,7 @@ root partialDerFirstFuncY(root x, root y)
 	return result;
 }
 
+/*Вычисление функции в точке g'x*/
 root partialDerSecondFuncX(root x, root y)
 {
 	root result = 1 / x;
@@ -47,6 +47,7 @@ root partialDerSecondFuncX(root x, root y)
 	return result;
 }
 
+/*Вычисление функции в точке g'y*/
 root partialDerSecondFuncY(root x, root y)
 {
 	root result = 2 * y;
@@ -106,7 +107,7 @@ int main()
 
 	cout << "Корень уравнения. x: " << x1[1] << "\t y: " << x1[0] << endl;
 	cout << "Значения функций в данных точках.\n";
-	//cout << "x: " << valueOfFirstFunc(x1[1]) << "\t" << "y: " << valueOfSecondFunc(x1[0]) << endl;
+	cout << "x: " << valueOfFirstFunc(x1[1]) << "\t" << "y: " << valueOfSecondFunc(x1[0]) << endl;
 
 	system("pause");
 
