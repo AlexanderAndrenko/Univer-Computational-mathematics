@@ -106,8 +106,6 @@ int main()
 	} while (fabs(delta[0]) > epsilon || fabs(delta[1]) > epsilon);
 
 	cout << "Корень уравнения. x: " << x1[1] << "\t y: " << x1[0] << endl;
-	cout << "Значения функций в данных точках.\n";
-	cout << "x: " << valueOfFirstFunc(x1[1]) << "\t" << "y: " << valueOfSecondFunc(x1[0]) << endl;
 
 	system("pause");
 
