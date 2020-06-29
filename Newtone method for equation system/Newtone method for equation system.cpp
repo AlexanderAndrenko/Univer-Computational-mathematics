@@ -105,7 +105,7 @@ int main()
 
 	} while (fabs(delta[0]) > epsilon || fabs(delta[1]) > epsilon);
 
-	cout << "Корень уравнения. x: " << x1[1] << "\t y: " << x1[0] << endl;
+	cout << "Корень уравнения. x: " << x1[0] << "\t y: " << x1[1] << endl;
 
 	system("pause");
 
